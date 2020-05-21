@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Payments from "./Payments";
 
 const Navbar = styled.nav`
   display: flex;
@@ -15,9 +16,16 @@ const Navbar = styled.nav`
 const ListElem = styled.li`
   list-style: none;
   cursor: pointer;
+  padding: 0 15px;
+  margin: 5px;
   a {
     text-decoration: none;
   }
+`;
+const List = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 class Header extends React.Component {
@@ -34,11 +42,14 @@ class Header extends React.Component {
         );
 
       default:
-        return (
-          <ListElem>
+        return [
+          <ListElem key="1">
+            <Payments />
+          </ListElem>,
+          <ListElem key="2">
             <a href="/api/logout">Logout</a>
-          </ListElem>
-        );
+          </ListElem>,
+        ];
     }
   }
 
@@ -46,7 +57,7 @@ class Header extends React.Component {
     return (
       <Navbar>
         <Link to={this.props.auth ? "/surveys" : "/"}>SurveyBox</Link>
-        <ul>{this.renderContent()}</ul>
+        <List>{this.renderContent()}</List>
       </Navbar>
     );
   }
