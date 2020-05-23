@@ -8,9 +8,9 @@ const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #66bb6a;
-  color: #fff;
+  padding: 8px;
+  background: #fff;
+  border-bottom: 1px solid #333;
 `;
 
 const ListElem = styled.li`
@@ -20,12 +20,18 @@ const ListElem = styled.li`
   margin: 5px;
   a {
     text-decoration: none;
+    color: #fff;
   }
 `;
 const List = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: #333;
 `;
 
 class Header extends React.Component {
@@ -37,7 +43,10 @@ class Header extends React.Component {
       case false:
         return (
           <ListElem>
-            <a href="/auth/google"> Login</a>
+            <button class="ui google plus button">
+              <i class="google plus icon"></i>
+              <a href="/auth/google"> Login</a>
+            </button>
           </ListElem>
         );
 
@@ -46,9 +55,20 @@ class Header extends React.Component {
           <ListElem key="1">
             <Payments />
           </ListElem>,
-          <ListElem key="3">Credits : {this.props.auth.credits}</ListElem>,
+          <ListElem key="3">
+            <div class="ui labeled button" tabindex="0">
+              <div class="ui green button">
+                <i class="envelope icon"></i> Credits
+              </div>
+              <a href="/" class="ui basic green left pointing label">
+                {this.props.auth.credits}
+              </a>
+            </div>
+          </ListElem>,
           <ListElem key="2">
-            <a href="/api/logout">Logout</a>
+            <button class="ui primary button">
+              <a href="/api/logout">Logout</a>
+            </button>
           </ListElem>,
         ];
     }
@@ -57,7 +77,9 @@ class Header extends React.Component {
   render() {
     return (
       <Navbar>
-        <Link to={this.props.auth ? "/surveys" : "/"}>SurveyBox</Link>
+        <CustomLink to={this.props.auth ? "/surveys" : "/"}>
+          <h2>SurveyBox</h2>
+        </CustomLink>
         <List>{this.renderContent()}</List>
       </Navbar>
     );

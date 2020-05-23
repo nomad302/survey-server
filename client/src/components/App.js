@@ -9,7 +9,7 @@ import SurveyNew from "./SurveyNew";
 import Landing from "./Landing";
 
 const AppLayout = styled.div`
-  margin: 10px 20px;
+  margin: 0 20px;
   font-family: Helvetica, Arial, sans-serif;
 `;
 

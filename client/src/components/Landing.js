@@ -1,11 +1,18 @@
 import React from "react";
+import styled from "styled-components";
+
+const Page = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
 
 const Landing = () => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <Page>
       <h1>Survey Box</h1>
-      <p>Take Feedback from clients</p>
-    </div>
+    </Page>
   );
 };
 
